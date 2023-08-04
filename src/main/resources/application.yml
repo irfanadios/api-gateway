@@ -1,0 +1,42 @@
+#-----------------------------------------------------
+--- # SPRING APPLICATION CONFIG
+#-----------------------------------------------------
+spring:
+    application:
+        name: api-gateway
+
+#-----------------------------------------------------
+--- # EUREKA URL CONFIG
+#-----------------------------------------------------
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+
+#-----------------------------------------------------
+--- # LOGGING LEVEL CONFIG
+#-----------------------------------------------------
+logging:
+    level:
+        root: INFO
+        "[org.springframework.cloud.gateway.route]": INFO
+        "[org.springframework.cloud.gateway]": TRACE
+
+#-----------------------------------------------------
+--- # LIST API
+#-----------------------------------------------------
+spring:
+    cloud:
+        gateway:
+            routes:
+                - id: auth-service
+                  uri: lb://auth-service
+                  predicates:
+                      - Path=/api/auth-service/**
+
+#-----------------------------------------------------
+--- # JWT Utility
+#-----------------------------------------------------
+irfanadios:
+    app:
+        jwtSecret: AL374nDr0p0E72aM4h3nDrAAL374nDr0p0E72aM4h3nDrAAL374nDr0p0E72aM4h3nDrA
